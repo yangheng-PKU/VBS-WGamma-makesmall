@@ -30,7 +30,7 @@ public :
    Int_t           fCurrent; //!current Tree number in a TChain
 
    // Declaration of leaf types
-   Int_t           event;
+   Int_t           nevent;
    Int_t           nVtx;
    Double_t        theWeight;
    Double_t        nump;
@@ -103,6 +103,7 @@ public :
    Double_t        drla_f;
    Int_t           isTrue;
    Int_t           isprompt;
+   Int_t           ispromptLep;
    Double_t        ak4jet_pt[6];
    Double_t        ak4jet_eta[6];
    Double_t        ak4jet_phi[6];
@@ -189,7 +190,7 @@ public :
    TBranch        *b_jet2pf;
    TBranch        *b_Dphiwajj;
    TBranch        *b_Dphiwajj_f;
-   TBranch        *b_event;   //!
+   TBranch        *b_nevent;   //!
    TBranch        *b_nVtx;   //!
    TBranch        *b_theWeight;   //!
    TBranch        *b_nump;   //!
@@ -262,6 +263,7 @@ public :
    TBranch        *b_drla_f;   //!
    TBranch        *b_isTrue;   //!
    TBranch        *b_isprompt;   //!
+   TBranch        *b_ispromptLep;   //!
    TBranch        *b_ak4jet_pt;   //!
    TBranch        *b_ak4jet_eta;   //!
    TBranch        *b_ak4jet_phi;   //!
@@ -443,6 +445,7 @@ void xx::Init(TTree *tree)
 
    fChain->SetBranchAddress("ptVlepJEC", &ptVlepJEC, &b_ptVlepJEC);  
 
+   ExTree->Branch("ispromptLep",&ispromptLep, "ispromptLep/I");
    ExTree->Branch("isprompt",&isprompt, "isprompt/I");
    ExTree->Branch("photonet", &photonet, "photonet/D");
    ExTree->Branch("photoneta", &photoneta, "photoneta/D");
@@ -504,7 +507,7 @@ void xx::Init(TTree *tree)
    fChain->SetBranchAddress("jet2pf",&jet2pf,&b_jet2pf);
    fChain->SetBranchAddress("Dphiwajj_f",&Dphiwajj_f,&b_Dphiwajj_f);
    fChain->SetBranchAddress("Dphiwajj",&Dphiwajj,&b_Dphiwajj);
-   fChain->SetBranchAddress("event", &event, &b_event);
+   fChain->SetBranchAddress("nevent", &nevent, &b_nevent);
    fChain->SetBranchAddress("nVtx", &nVtx, &b_nVtx);
    fChain->SetBranchAddress("theWeight", &theWeight, &b_theWeight);
    fChain->SetBranchAddress("nump", &nump, &b_nump);
@@ -577,6 +580,7 @@ void xx::Init(TTree *tree)
    fChain->SetBranchAddress("drla_f", &drla_f, &b_drla_f);
    fChain->SetBranchAddress("isTrue", &isTrue, &b_isTrue);
    fChain->SetBranchAddress("isprompt", &isprompt, &b_isprompt);
+   fChain->SetBranchAddress("ispromptLep", &ispromptLep, &b_ispromptLep);
    fChain->SetBranchAddress("ak4jet_pt", ak4jet_pt, &b_ak4jet_pt);
    fChain->SetBranchAddress("ak4jet_eta", ak4jet_eta, &b_ak4jet_eta);
    fChain->SetBranchAddress("ak4jet_phi", ak4jet_phi, &b_ak4jet_phi);

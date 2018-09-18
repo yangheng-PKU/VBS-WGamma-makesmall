@@ -56,10 +56,10 @@ void xx::Loop()
      if(jentry%100000==0) cout<<" "<<HLT_Ele1<<" "<<HLT_Mu1<<" "<<fabs(theWeight)/theWeight<<" "<<m_dataset<<" "<<jentry<<" "<<nentries<<endl;
   
      if(m_dataset=="outWAJJ.root"){ scalef=1000.*0.776/float(npp-nmm)*fabs(theWeight)/theWeight; }
-     if(m_dataset=="outWA.root"){ scalef=1000.*489.0/float(npp-nmm)*fabs(theWeight)/theWeight; }
+     if(m_dataset=="outWA.root"){ scalef=1000.*178.6/float(npp-nmm)*fabs(theWeight)/theWeight; }
      if(m_dataset=="outWJets.root"){ scalef=1000.*61526.7/float(npp-nmm)*fabs(theWeight)/theWeight; }
      if(m_dataset=="outZJets.root"){ scalef=1000.*5765.4/float(npp-nmm)*fabs(theWeight)/theWeight; }
-     if(m_dataset=="outZA.root"){ scalef=1000.*117.864/float(npp-nmm)*fabs(theWeight)/theWeight; }       
+     if(m_dataset=="outZA.root"){ scalef=1000.*47.46/float(npp-nmm)*fabs(theWeight)/theWeight; }       
      if(m_dataset=="outTTA.root"){ scalef=1000.*3.697/float(npp-nmm)*fabs(theWeight)/theWeight; }       
      if(m_dataset=="outTTJets.root"){ scalef=1000.*831.76/float(npp-nmm)*fabs(theWeight)/theWeight; }     
      if(m_dataset=="outSTs.root"){ scalef=1000.*3.36/float(npp-nmm)*fabs(theWeight)/theWeight; }       
@@ -70,7 +70,10 @@ void xx::Loop()
      if(m_dataset=="outWW.root"){ scalef=1000.*118.7/float(npp-nmm)*fabs(theWeight)/theWeight; }       
      if(m_dataset=="outWZ.root"){ scalef=1000.*47.13/float(npp-nmm)*fabs(theWeight)/theWeight; }       
      if(m_dataset=="outZZ.root"){ scalef=1000.*16.523/float(npp-nmm)*fabs(theWeight)/theWeight; }       
-     if(m_dataset=="outDY.root"){ scalef=1000.*5765.4/float(npp-nmm)*fabs(theWeight)/theWeight; }  
+     if(m_dataset=="outDY1.root"){ scalef=1000.*1016/float(npp-nmm)*fabs(theWeight)/theWeight; }  
+     if(m_dataset=="outDY2.root"){ scalef=1000.*331.4/float(npp-nmm)*fabs(theWeight)/theWeight; }
+     if(m_dataset=="outDY3.root"){ scalef=1000.*96.36/float(npp-nmm)*fabs(theWeight)/theWeight; }
+     if(m_dataset=="outDY4.root"){ scalef=1000.*51.4/float(npp-nmm)*fabs(theWeight)/theWeight; }
      if(m_dataset=="outW3Jets.root"){ scalef=1000.*942.3/float(npp-nmm)*fabs(theWeight)/theWeight; }  
      if(m_dataset=="outQCD.root"){ scalef=1000.*162060000/float(npp-nmm)*fabs(theWeight)/theWeight; }
      if(m_dataset=="outWAmlm.root"){ scalef=1000.*405.271/float(npp-nmm)*fabs(theWeight)/theWeight; }
@@ -854,7 +857,6 @@ void xx::Loop()
 		}
 	}
 
-/*
 	if(fabs(jet1eta)<2.4 && fabs(jet2eta)<2.4) 
 	{
 		if(fabs(jet1pf)==5 && fabs(jet2pf)==5)  //partonflavour b=5  c=4 
@@ -1145,7 +1147,6 @@ void xx::Loop()
 			}
 		}
 	}
-*/
 
 
  
