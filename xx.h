@@ -11,6 +11,7 @@
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
+#include <TLorentzVector.h>
 
 // Header file for the classes stored in the TTree if any.
 
@@ -183,9 +184,29 @@ public :
    Double_t        Dphiwajj_f;
    Int_t           jet1pf;
    Int_t           jet2pf;
+   Bool_t          photonhaspixelseed;
+   Bool_t          photonhaspixelseed_f;
+   Bool_t          photonpasseleveto;
+   Bool_t          photonpasseleveto_f;
+   Double_t        photonsceta;
+   Double_t        photonsceta_f;
+   Double_t        photonscphi;
+   Double_t        photonscphi_f;
+   Double_t        L1prefiring;
+   Double_t        L1prefiringup;
+   Double_t        L1prefiringdown;
 
-
-   // List of branches
+   TBranch        *b_L1prefiringup;
+   TBranch        *b_L1prefiringdown;
+   TBranch        *b_L1prefiring;
+   TBranch        *b_photonsceta;
+   TBranch        *b_photonsceta_f;
+   TBranch        *b_photonscphi;
+   TBranch        *b_photonscphi_f;
+   TBranch        *b_photonpasseleveto;
+   TBranch        *b_photonpasseleveto_f;
+   TBranch        *b_photonhaspixelseed;
+   TBranch        *b_photonhaspixelseed_f;
    TBranch        *b_jet1pf;
    TBranch        *b_jet2pf;
    TBranch        *b_Dphiwajj;
@@ -371,9 +392,10 @@ void endJob();
    private:
    TTree *ExTree;
    TFile *fout; 
+double WGmass;
    double scalef;
-   double scale_btag_up;
-   double scale_btag_down;
+   double scale_sys_up;
+   double scale_sys_low;
 };
 
 #endif
@@ -441,21 +463,25 @@ void xx::Init(TTree *tree)
 
    fout = new TFile(m_dataset, "RECREATE");
    ExTree = new TTree("demo","demo");
-
-
-   fChain->SetBranchAddress("ptVlepJEC", &ptVlepJEC, &b_ptVlepJEC);  
-
+ 
+   ExTree->Branch("L1prefiringup", &L1prefiringup, "L1prefiringup/D");
+   ExTree->Branch("L1prefiringdown", &L1prefiringdown, "L1prefiringdown/D");
+   ExTree->Branch("L1prefiring", &L1prefiring, "L1prefiring/D");
+   ExTree->Branch("WGmass", &WGmass, "WGmass/D");
+   ExTree->Branch("photonpasseleveto",&photonpasseleveto,"photonpasseleveto/O");
+   ExTree->Branch("photonhaspixelseed",&photonhaspixelseed, "photonhaspixelseed/O");
    ExTree->Branch("ispromptLep",&ispromptLep, "ispromptLep/I");
    ExTree->Branch("isprompt",&isprompt, "isprompt/I");
    ExTree->Branch("photonet", &photonet, "photonet/D");
    ExTree->Branch("photoneta", &photoneta, "photoneta/D");
+   ExTree->Branch("photonsceta", &photonsceta, "photonsceta/D");
 //   ExTree->Branch("photonphi", &photonphi, "photonphi/D");
 //   ExTree->Branch("photone", &photone, "photone/D");
    ExTree->Branch("photonsieie",&photonsieie,"photonsieie/D");
    ExTree->Branch("drla",&drla,"drla/D");
    ExTree->Branch("scalef",&scalef,"scalef/D");
-   ExTree->Branch("scale_btag_up",&scale_btag_up,"scale_btag_up/D");
-   ExTree->Branch("scale_btag_down",&scale_btag_down,"scale_btag_down/D");
+   ExTree->Branch("scale_sys_up",&scale_sys_up,"scale_sys_up/D");
+   ExTree->Branch("scale_sys_low",&scale_sys_low,"scale_sys_low/D");
    ExTree->Branch("nVtx", &nVtx, "nVtx/I");
    ExTree->Branch("theWeight", &theWeight, "theWeight/D");
    ExTree->Branch("lumiWeight", &lumiWeight, "lumiWeight/D");
@@ -503,6 +529,16 @@ void xx::Init(TTree *tree)
    ExTree->Branch("ptVlep",&ptVlep,"ptVlep/D");
 
 
+   fChain->SetBranchAddress("L1prefiringup", &L1prefiringup, &b_L1prefiringup);
+   fChain->SetBranchAddress("L1prefiringdown", &L1prefiringdown, &b_L1prefiringdown);
+   fChain->SetBranchAddress("L1prefiring", &L1prefiring, &b_L1prefiring);
+   fChain->SetBranchAddress("ptVlepJEC", &ptVlepJEC, &b_ptVlepJEC); 
+   fChain->SetBranchAddress("photonsceta", &photonsceta, &b_photonsceta);
+   fChain->SetBranchAddress("photonsceta_f", &photonsceta_f, &b_photonsceta_f);
+   fChain->SetBranchAddress("photonscphi", &photonscphi, &b_photonscphi);
+   fChain->SetBranchAddress("photonscphi_f", &photonscphi_f, &b_photonscphi_f);
+   fChain->SetBranchAddress("photonpasseleveto",&photonpasseleveto,&b_photonpasseleveto);
+   fChain->SetBranchAddress("photonhaspixelseed",&photonhaspixelseed,&b_photonhaspixelseed);
    fChain->SetBranchAddress("jet1pf",&jet1pf,&b_jet1pf);
    fChain->SetBranchAddress("jet2pf",&jet2pf,&b_jet2pf);
    fChain->SetBranchAddress("Dphiwajj_f",&Dphiwajj_f,&b_Dphiwajj_f);
