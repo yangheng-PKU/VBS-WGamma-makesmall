@@ -2,7 +2,7 @@
 #include "xx.C"
 void runxx() {
 //gROOT->LoadMacro("xx.C");
-TString dir= "/afs/cern.ch/user/q/qihuang/jetmet-eos/ntuple/";  // -loose-iso/";
+`TString dir= "/afs/cern.ch/user/q/qihuang/jetmet-eos/ntuple/";  // -loose-iso/";`
 
 ifstream infile("filelist");
 string buffer; 
